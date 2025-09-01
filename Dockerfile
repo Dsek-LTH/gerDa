@@ -33,7 +33,7 @@
 
 FROM node:alpine
 # RUN apk update && apk upgrade && apk add texlive-full pandoc
-RUN apk update && apk upgrade && apk add tectonic pandoc wget unzip
+RUN apk update && apk upgrade && apk add tectonic pandoc wget unzip git
 ENV TZ=Etc/UTC
 WORKDIR /app
 COPY . .
