@@ -222,8 +222,14 @@ async function compileTex(tex: string, fileName: string): Promise<string> {
 	// if there are more than 10 logs in the logs folder, delete the oldest one
 	deleteOldestFile('logs');
 
-	console.log('Writing tex to file');
-	fs.writeFileSync(`uploads/${fileName}.tex`, tex);
+	console.log(`Writing tex to file uploads/${fileName}.tex`);
+	try {
+		fs.writeFileSync(`uploads/${fileName}.tex`, tex);
+		console.log("checking file... " + fs.existsSync(`uploads/${fileName}.tex`));
+	} catch (e) {
+		console.log("file not written " + e)
+	}
+	console.log(`I am in cwd ${process.cwd()}`);
 
 	console.log('Compiling tex with ');
 	console.log(spawnSync('which tectonic', { shell: true }).stdout.toString());
