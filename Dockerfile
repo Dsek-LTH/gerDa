@@ -35,6 +35,7 @@ FROM node:alpine
 # RUN apk update && apk upgrade && apk add texlive-full pandoc
 RUN apk update && apk upgrade && apk add tectonic pandoc wget unzip git
 ENV TZ=Etc/UTC
+
 WORKDIR /app
 COPY . .
 
@@ -42,6 +43,9 @@ COPY . .
 # RUN unzip main.zip
 # RUN mkdir -p tex
 # RUN mv dsekdocs-main/* tex/
+
+ENV XDG_CACHE_HOME=/app/cache
+RUN mkdir cache
 
 RUN tectonic -X compile GUIDE.tex -Z search-path=dsekdocs -Z continue-on-errors
 RUN mv GUIDE.pdf static/GUIDE.pdf
