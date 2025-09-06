@@ -49,12 +49,12 @@ RUN mkdir cache
 
 RUN tectonic -X compile GUIDE.tex -Z search-path=dsekdocs -Z continue-on-errors
 RUN mv GUIDE.pdf static/GUIDE.pdf
-RUN chmod -R g+w,o+r /app/cache
+RUN chmod -R g+rw,o+r /app/cache
 
 COPY package*.json .
 RUN npm install
 RUN npm run build
-RUN chmod g+w . -R
+RUN chmod g+rw . -R
 EXPOSE 3000
 ENV NODE_ENV=production
 # Change this to the domain you are using
