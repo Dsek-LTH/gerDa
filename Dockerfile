@@ -49,6 +49,7 @@ RUN mkdir cache
 
 RUN tectonic -X compile GUIDE.tex -Z search-path=dsekdocs -Z continue-on-errors
 RUN mv GUIDE.pdf static/GUIDE.pdf
+RUN chmod -R g+w, o+r /app/cache
 
 COPY package*.json .
 RUN npm install
